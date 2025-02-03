@@ -1,0 +1,20 @@
+{
+  "id": "migration-silencer",
+  "title": "Migration Silencer",
+  "description": "Make the migration notice disappear.",
+  "authors": [
+    {
+      "name": "Daedalus11069"
+    }
+  ],
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11",
+    "maximum": "11"
+  },
+  "esmodules": ["migration-silencer.js"],
+  "url": "https://github.com/Daedalus11069/foundry-migration-silencer-module",
+  "manifest": "https://raw.githubusercontent.com/Daedalus11069/foundry-migration-silencer-module/main/src/module.json",
+  "download": "https://github.com/Daedalus11069/foundry-migration-silencer-module/releases/download/v0.1.0/foundry-migration-silencer-module_0.1.0.zip"
+}
