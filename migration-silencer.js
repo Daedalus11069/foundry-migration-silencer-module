@@ -48,6 +48,7 @@ Hooks.once("ready", function () {
             .querySelector(selector)
             ?.querySelector(innerSelector) === "undefined"
         ) {
+          console.log("Migration Silencer | Closed Notice");
           window.clearInterval(interval);
         }
       }, 500);
