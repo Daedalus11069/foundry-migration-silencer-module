@@ -9,9 +9,7 @@ Hooks.once("ready", function () {
           .textContent.trim() === text
       ) {
         return resolve({
-          elm: document.querySelector(selector),
-          selector,
-          innerSelector
+          elm: document.querySelector(selector)
         });
       }
 
@@ -25,9 +23,7 @@ Hooks.once("ready", function () {
         ) {
           observer.disconnect();
           resolve({
-            elm: document.querySelector(selector),
-            selector,
-            innerSelector
+            elm: document.querySelector(selector)
           });
         }
       });
@@ -39,19 +35,33 @@ Hooks.once("ready", function () {
       });
     });
   };
-  waitForElm(".dialog", ".window-title", "Migration").then(
-    ({ elm, selector, innerSelector }) => {
-      const interval = window.setInterval(() => {
-        elm.querySelector(".header-button.control.close").click();
-        if (
-          typeof document
-            .querySelector(selector)
-            ?.querySelector(innerSelector) === "undefined"
-        ) {
-          console.log("Migration Silencer | Closed Notice");
-          window.clearInterval(interval);
+  const waitForElmRemoval = elm => {
+    return new Promise(resolve => {
+      const observer = new MutationObserver(mutations => {
+        if (mutations[0].removedNodes[0] === elm) {
+          observer.disconnect();
+          resolve();
         }
-      }, 500);
-    }
-  );
+      });
+
+      // If you get "parameter 1 is not of type 'Node'" error, see https://stackoverflow.com/a/77855838/492336
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    });
+  };
+  waitForElm(".dialog", ".window-title", "Migration").then(({ elm }) => {
+    const interval = window.setInterval(() => {
+      if (elm.querySelector(".header-button.control.close") !== null) {
+        waitForElmRemoval(elm).then(() => {
+          console.log(
+            "Migration Silencer | Successfully closed Migration Notice"
+          );
+          window.clearInterval(interval);
+        });
+        elm.querySelector(".header-button.control.close").click();
+      }
+    }, 500);
+  });
 });
