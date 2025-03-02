@@ -7,7 +7,7 @@
       "name": "Daedalus11069"
     }
   ],
-  "version": "0.1.1",
+  "version": "0.1.2",
   "compatibility": {
     "minimum": "11",
     "verified": "11",
@@ -16,5 +16,5 @@
   "esmodules": ["migration-silencer.js"],
   "url": "https://github.com/Daedalus11069/foundry-migration-silencer-module",
   "manifest": "https://raw.githubusercontent.com/Daedalus11069/foundry-migration-silencer-module/main/manifest/module.json",
-  "download": "https://github.com/Daedalus11069/foundry-migration-silencer-module/releases/download/v0.1.1/migration-silencer_0.1.1.zip"
+  "download": "https://github.com/Daedalus11069/foundry-migration-silencer-module/releases/download/v0.1.2/migration-silencer_0.1.2.zip"
 }

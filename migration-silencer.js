@@ -1,4 +1,4 @@
-Hooks.once("ready", function () {
+Hooks.once("init", function () {
   const waitForElm = (selector, innerSelector, text) => {
     return new Promise(resolve => {
       if (
